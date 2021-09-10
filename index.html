@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+	<title>Dice Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+    </style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Dice Game!</h1>
+
+		<div class="dice">
+			
+			<img class="img1" src="dice6.png">
+            <p class="Player1">Player 1</p>
+		</div>
+
+		<div class="dice">
+			
+			<img class="img2" src="dice6.png">
+            <p class="Player2">Player 2</p>
+            
+		</div>
+	</div>
+    <div class="container bottom">
+		<button type="button" class="butn"
+			onClick="editNames()">
+			Edit Player Names?
+		</button>
+	</div>
+	<div class="container bottom">
+		<button type="button" class="butn"
+			onClick="rollTheDice()">
+			Roll the Dice
+		</button>
+	</div>
+	
+
+    <script>
+  
+        // Player name
+        var player1 = "Player 1";
+        var player2 = "Player 2";
+      
+        // Function to change the player name
+        function editNames() {
+            player1 = prompt("Change Player1 name");
+            player2 = prompt("Change player2 name");
+      
+            document.querySelector("p.Player1").innerHTML = player1;
+            document.querySelector("p.Player2").innerHTML = player2;
+        }
+      
+        // Function to roll the dice
+        function rollTheDice() {
+            setTimeout(function () {
+                var randomNumber1 = Math.floor(Math.random() * 6) + 1;
+                var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+      
+                document.querySelector(".img1").setAttribute("src",
+                    "dice" + randomNumber1 + ".png");
+      
+                document.querySelector(".img2").setAttribute("src",
+                    "dice" + randomNumber2 + ".png");
+      
+                if (randomNumber1 === randomNumber2) {
+                    document.querySelector("h1").innerHTML = "Draw!";
+                }
+      
+                else if (randomNumber1 < randomNumber2) {
+                    document.querySelector("h1").innerHTML
+                                    = (player2 + " WINS!");
+                }
+      
+                else {
+                    document.querySelector("h1").innerHTML
+                                    = (player1 + " WINS!");
+                }
+            }, 2500);
+        }
+    </script>
+</body>
+
+</html>
